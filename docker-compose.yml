@@ -1,5 +1,4 @@
 version: '3.8'
-
 services:
   mongo:
     image: mongo:6
@@ -8,6 +7,15 @@ services:
       - "27017:27017"
     volumes:
       - mongo-data:/data/db
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: devops-pulse-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
     restart: unless-stopped
 
   server:
@@ -19,6 +27,7 @@ services:
       - ./server/.env
     depends_on:
       - mongo
+      - redis
     restart: unless-stopped
 
   client:
@@ -32,4 +41,5 @@ services:
 
 volumes:
   mongo-data:
+  redis-data:
 
