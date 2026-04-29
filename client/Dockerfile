@@ -16,8 +16,11 @@ FROM nginx:alpine
 
 COPY --from=build /app/build /usr/share/nginx/html
 
+# Local docker-compose
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-EXPOSE 80
+# ECS production - template with BACKEND_URL env variable
+COPY nginx.conf.template /etc/nginx/templates/default.conf.template
 
+EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
