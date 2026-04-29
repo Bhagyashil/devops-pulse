@@ -1,6 +1,35 @@
+# Dependencies
 node_modules/
+**/node_modules/
+
+# Environment files
 .env
-*.log
+.env.local
+.env.development
+.env.production
+**/.env
+
+# Build outputs
 build/
 dist/
+**/build/
+**/dist/
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-error.log*
+
+# Docker
 Dockerfile.save
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
